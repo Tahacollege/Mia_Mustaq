@@ -1,0 +1,386 @@
+<html>
+    <head>
+        <title>HomePage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no,">
+        <link type="text/css" rel="stylesheet" href="../cssfiles/index.css">
+        <script>
+            function category(){
+                var boisdiv=document.getElementById('bois_cate')
+                boisdiv.classList.remove('bois_category')
+                boisdiv.classList.add('bois_category_mouse_over')
+            }
+            function leave_category(){
+                var boisdiv=document.getElementById('bois_cate')
+                boisdiv.classList.add('bois_category')
+                boisdiv.classList.remove('bois_category_mouse_over')
+            }
+            function home(){
+                window.location.href="/"
+            }
+            function search(name){
+
+                window.location.href=`/Search?search=${name}`
+            }
+            function birthday(){
+                window.location.href=`/Search?search=birthday`
+            }
+            function lafde(){
+                window.location.href=`/Search?search=fight`
+            }
+            function vlogs(){
+                window.location.href=`/Search?search=vlog`
+            }
+            function fullvideo(id){
+                window.location.href=`/FullVideo?id=${id}`
+            }
+        </script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="topnav">
+                <h5 onclick="search('muffy')">Dallo</h5>
+                <h5 onclick="search('juccy')">Juccy</h5>
+                <h5 onclick="search('rowdy')">Rowdy</h5>
+                <h5 onclick="search('tammu')">Tammu</h5>
+                <h5 onclick="search('battery')">Battery</h5>
+                <h5 onclick="search('amin')">Amin</h5>
+                <h5 onclick="search('badshah')">Badshah</h5>
+                <h5 onclick="search('charci')">Charci</h5>
+                <h5 onclick="search('kapadia')">Kapadia</h5>
+                <h5 onclick="search('abuzer')">Abuzer</h5>
+                <h5 onclick="search('sahil')">Sahil</h5>
+            </div>
+            <div class="midnav">
+                <img src="../images/menu.png" class="nav_menu">
+                <img onclick="home()" src="../images/logo.png" class="nav_logo">
+                <form method="post" action="/Search">
+                <input placeholder="Search Mia-Mustaq" type="search" name="search" class="form_search">
+                <button class="menu_search search_btn"><img src="../images/magnify.png"></button>
+            </form>
+                <img src="../images/youtube.png" class="menu_youtube">
+                <img src="../images/camera.png" class="menu_camera">
+                <img src="../images/user.png" class="menu_user">
+            </div>
+            <div class="endnav">
+                <h5 onclick="home()">Home</h5>
+                <h5 onclick="birthday()">Birthday</h5>
+                <h5 onmouseenter=category() onclick="category()" ondblclick="leave_category()">Categories ▼</h5>
+                <h5 onclick="lafde()">Lafde</h5>
+                <h5 onclick="vlogs()">Vlogs</h5>
+            </div>
+        </nav>
+        <div class="bois_category" id="bois_cate">
+            <div class="bois_img_div" onclick="search('muffy')"></div>
+            <div class="bois_img_div" onclick="search('juccy')"></div>
+            <div class="bois_img_div" onclick="search('rowdy')"></div>
+            <div class="bois_img_div" onclick="search('tammu')"></div>
+            <div class="bois_img_div" onclick="search('battery')"></div>
+            <div class="bois_img_div" onclick="search('amin')"></div>
+            <div class="bois_img_div" onclick="search('badshah')"></div>
+            <div class="bois_img_div" onclick="search('charci')"></div>
+            <div class="bois_img_div" onclick="search('Kapadia')"></div>
+            <div class="bois_img_div" onclick="search('abuzer')"></div>
+            <div class="bois_img_div" onclick="search('sahil')"></div>
+        </div>
+        <center><h1 onmouseenter=leave_category() style="margin-top: 40px;">Hot Videos From The-Bois 💦💦</h1></center>
+        <div class="catgories">
+            <h5 onclick="search('muffy')">Dallo</h5>
+                <h5 onclick="search('juccy')">Juccy</h5>
+                <h5 onclick="search('rowdy')">Rowdy</h5>
+                <h5 onclick="search('tammu')">Tammu</h5>
+                <h5 onclick="search('battery')">Battery</h5>
+                <h5 onclick="search('amin')">Amin</h5>
+                <h5 onclick="search('badshah')">Badshah</h5>
+                <h5 onclick="search('charci')">Charci</h5>
+                <h5 onclick="search('kapadia')">Kapadia</h5>
+                <h5 onclick="search('abuzer')">Abuzer</h5>
+                <h5 onclick="search('sahil')">Sahil</h5>
+        </div>
+        <div class="video_container">
+        <div class="full_video">
+            <video controls>
+                <source src="../videos/<%=data.name%>">
+            </video>
+        </div>
+        <div class="advertisements">
+            <img src="../gifs/<%=ran1%>.gif">
+            <img src="../gifs/<%=ran2%>.gif">
+        </div>
+    </div>
+    <div class="full_vid_title">
+        <h3><%=data.title%></h3>
+        <div class="fullvid_container">
+        <div class="vids_view">
+            <img src="../images/eye.png">
+            <p style="color: aliceblue;"><%=data.views%></p>
+        </div>
+        <div class="vids_view">
+            <img src="../images/like.png">
+            <p style="color: aliceblue;"><%=data.likes%></p>
+        </div>
+        <div class="vids_view">
+            <img src="../images/dislike.png">
+            <p style="color: aliceblue;"><%=data.dislikes%></p>
+        </div>
+    </div>
+    </div>
+    <form class="comment_contain" method="post" action="/comment">
+        <input type="text" name="comment" placeholder="Comment">
+        <input type="hidden" name="id" value="<%=data.num%>">
+        <button>Submit</button>
+    </form>
+    <div class="comments_container">
+        <%if(comm=="undefined"){%>
+            <div>
+            </div>
+            <%}else{%>
+        <%for(let comment of comm){%>
+        <div>
+            <img src="../images/user.png" class="user_icon">
+            <h3><%=comment.comments%></h3>
+        </div>
+        <%}%>
+        <%}%>
+    </div>
+    <div class="main_videos_full ">
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm1.name%>">
+                </video>
+                <% var title=sm1.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm2.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm1.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm1.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm1.dislikes%></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm2.name%>">
+                </video>
+                <% var title=sm2.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm2.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm2.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm2.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm2.dislikes%></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm3.name%>">
+                </video>
+                <% var title=sm2.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm3.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm3.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm3.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm3.dislikes%></p>
+                </div>
+            </div>
+            </div>
+            
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm4.name%>">
+                </video>
+                <% var title=sm4.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm4.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm4.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm4.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm4.dislikes%></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm5.name%>">
+                </video>
+                <% var title=sm5.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm5.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm5.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm5.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm5.dislikes%></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm6.name%>">
+                </video>
+                <% var title=sm6.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm2.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm6.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm6.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm6.dislikes%></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm7.name%>">
+                </video>
+                <% var title=sm7.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm7.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm7.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm7.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm7.dislikes%></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="vids">
+                <video controls >
+                    <source src="../videos/<%=sm8.name%>">
+                </video>
+                <% var title=sm8.title%>
+                <% var sp_title=title.slice(0,45)%>
+                <h5 onclick="fullvideo('<%=sm8.num%>')"><%=sp_title%>...</h5>
+                <div class="vids_container">
+                <div class="vids_view">
+                    <img src="../images/eye.png">
+                    <p style="color: aliceblue;"><%=sm8.views%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/like.png">
+                    <p style="color: aliceblue;"><%=sm8.likes%></p>
+                </div>
+                <div class="vids_view">
+                    <img src="../images/dislike.png">
+                    <p style="color: aliceblue;"><%=sm8.dislikes%></p>
+                </div>
+            </div>
+            </div>
+    </div>
+        <div class="fotter">
+            <div class="fotter_addvs">
+                <img src="../images/giff.gif">
+            </div>
+            <div class="fotter_thanks_text">
+                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur architecto sequi, blanditiis voluptates doloremque cumque corrupti aperiam alias. Quo sit aspernatur nam nihil. Corrupti molestiae inventore excepturi, animi suscipit velit, dolorem iure ratione fugit quia accusamus nobis est optio saepe.</h1>
+            </div>
+            <div class="main_fotter">
+                <div class="main_fotter_divs">
+                    <h1>Information</h1>
+                    <h5>Sitemap</h5>
+                    <h5>Terms And Condition</h5>
+                    <h5>Privacy Notice</h5>
+                    <h5>Copyright</h5>
+                    <h5>Recomended System Guidlines</h5>
+                    <h5>Mia Mustaq</h5>
+                </div>
+                <div class="main_fotter_divs">
+                    <h1>join Us</h1>
+                    <h5>Content Partner</h5>
+                    <h5>Advertise</h5>
+                    <h5>WebMatsers</h5>
+                    <h5>Model Program</h5>
+                    <h5>Press</h5>
+                </div>
+                <div class="main_fotter_divs">
+                    <h1>Support Us</h1>
+                    <h5>Content Removal</h5>
+                    <h5>Contact Support</h5>
+                    <h5>FAQ's</h5>
+                    <h5>Trust And Safety</h5>
+                    <h5>Parental Control</h5>
+                    <h5>Feedback</h5>
+                </div>
+                <div class="main_fotter_divs">
+                    <h1>Discover</h1>
+                    <h5>Mia Mustaq Blog</h5>
+                    <h5>Insights Blog</h5>
+                    <h5>Sexual Wellness center</h5>
+                    <h5>Mobile</h5>
+                    <h5>Visual Impaired</h5>
+                    <h5>Audio Imparied</h5>
+                </div>
+            </div>
+            <div class="credits">
+                <img src="../images/github.png" class="credits_img">
+                <img src="../images/phone.png" class="credits_img">
+                <img src="../images/gmail.webp" class="credits_img">
+                <img src="../images/insta.jpeg" class="credits_img">
+                <h4 class="credits_text">©Credits/Rights Reserved:- Mia Mustaq</h4>
+                <img src="../images/logo.png" onclick="home()" class="credits_logo">
+            </div>
+
+        </div>
+    </body>
+</html>
